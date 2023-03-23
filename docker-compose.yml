@@ -1,0 +1,42 @@
+version: "2"
+
+services:
+  surah:
+    build: ./surah
+    container_name: surah
+    volumes:
+      - "./surah:/src/app"
+    ports:
+      - "5001:5001"
+    command: "npm run start"
+
+  juz:
+    build: ./juz
+    container_name: juz
+    volumes:
+      - "./juz:/src/app"
+    ports:
+      - "5002:5002"
+    command: "npm run start"
+
+  users:
+    build: ./users
+    container_name: users
+    volumes:
+      - "./users:/src/app"
+    ports:
+      - "5003:5003"
+    command: "npm run start"
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    volumes:
+      - "./gateway:/src/app"
+    ports:
+      - "80:80"
+    links:
+      - surah
+      - juz
+      - users
+    command: "npm run start"
