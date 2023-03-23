@@ -12,4 +12,10 @@ export default {
     surahs: async (parent) => quranSurahs.map(surahModel),
     getSurah: async (parent, { index }) => surahModel(quranSurahs[index]),
   },
+  Surah: {
+    __resolveReference(reference) {
+      const { index } = reference;
+      return surahModel(quranSurahs.find((it) => it.number == index));
+    },
+  },
 };

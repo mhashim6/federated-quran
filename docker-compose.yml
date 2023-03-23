@@ -38,5 +38,8 @@ services:
     links:
       - surah
       - juz
-      - users
+      # - users
+    environment:
+      - JUZ_URL=http://juz:5001
+      - SURAH_URL=http://surah:5002
     command: "npm run start"

@@ -1,8 +1,14 @@
 import { gql } from "apollo-server";
 
 export default gql`
-  type Juz {
-    surah: Int!
+  extend type Surah @key(fields: "index") {
+    index: Int!
+  }
+
+  type Juz @key(fields: "number") {
+    number: Int!
+    surahIndex: Int!
+    surah: Surah!
     ayah: Int!
   }
 
