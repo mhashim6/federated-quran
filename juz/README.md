@@ -1,5 +1,5 @@
 # Juz
-This service provide Quran Juz metadata.
+This services provide Quran Juz metadata.
 
 ## Testing
 ``` shell
