@@ -1,16 +1,13 @@
-import quranSurahs from "./surahs.json" assert { type: "json" };
+import { surahModel } from "./utils";
+import fs from "fs";
 
-// this is intentional; the public data model doesn't have to be the same internally
-const surahModel = ({ englishName, number, ...rest }) => ({
-  name: englishName,
-  index: number,
-  ...rest,
-});
+const quranSurahs = JSON.parse(fs.readFileSync("./surahs.json"));
 
 export default {
   Query: {
     surahs: async (parent) => quranSurahs.map(surahModel),
-    getSurah: async (parent, { index }) => surahModel(quranSurahs[index]),
+    getSurah: async (parent, { index }) =>
+      surahModel(quranSurahs.find((it) => it.number == index)),
   },
   Surah: {
     __resolveReference(reference) {
