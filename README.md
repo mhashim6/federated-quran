@@ -7,9 +7,10 @@ This is a POC, it exposes a GQL api to retrive quran metadata like "Juz'" and "S
 
 ## API
 Here I'll discuss the overall api specs. For details regarding other services, you can read their docs here:
-- [users](TODO)
-- [juz](TODO)
-- [surah](TODO)
+- [users](https://github.com/mhashim6/federated-quran/tree/master/users#readme)
+- [juz](https://github.com/mhashim6/federated-quran/tree/master/juz#readme)
+- [surah](https://github.com/mhashim6/federated-quran/tree/master/surah#readme)
+- [gateway](https://github.com/mhashim6/federated-quran/tree/master/gateway#readme)
 
 ### Juz
 ``` graphql
