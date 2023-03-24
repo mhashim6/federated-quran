@@ -61,7 +61,7 @@ query getJuzStartSurah {
 
 ```
 Output:
-``` graphql
+``` json
 {
   "number": 3,
   "ayah": 253,
