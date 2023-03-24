@@ -1,5 +1,5 @@
-import { surahModel } from "./utils";
 import fs from "fs";
+import { surahModel } from "./utils.js";
 
 const quranSurahs = JSON.parse(fs.readFileSync("./surahs.json"));
 
