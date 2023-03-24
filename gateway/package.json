@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node -r dotenv/config index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest tests"
   },
   "keywords": [],
   "author": "mhashim6",
@@ -17,5 +17,8 @@
     "apollo-server": "^3.12.0",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }
