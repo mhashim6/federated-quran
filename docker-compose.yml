@@ -30,24 +30,21 @@ services:
   users:
     build: ./users
     container_name: users
-    volumes:
-      - "./users:/src/app"
     ports:
       - "5003:5003"
+    depends_on:
+      db:
+        condition: service_healthy
     command: "npm run start"
 
   gateway:
     build: ./gateway
+    restart: always
     container_name: gateway
-    volumes:
-      - "./gateway:/src/app"
     ports:
       - "80:80"
-    links:
-      - surah
-      - juz
-      # - users
     environment:
       - JUZ_URL=http://juz:5001
       - SURAH_URL=http://surah:5002
+      - USERS_URL=http://users:5003
     command: "npm run start"
