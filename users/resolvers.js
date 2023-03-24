@@ -1,4 +1,5 @@
 import { encrypt, isValidPassword, token } from "./auth.js";
+import { canChangNamePredicate, permit } from "./auth_predicates.js";
 import { allUsers, createUser, findUser, updateUser } from "./db/repo.js";
 
 export default {
@@ -36,15 +37,18 @@ export default {
       const { email, newName } = args;
 
       const user = await findUser({ email: userEmail });
-      if (!user.isAdmin && userEmail != email)
-        return { error: "You don't have permissions to change this name" };
+      return await permit({
+        predicate: canChangNamePredicate(user, email),
+        action: async () => {
+          const targetUser = await findUser({ email });
+          if (!targetUser) return { error: "No such user." };
 
-      const targetUser = await findUser({ email });
-      if (!targetUser) return { error: "No such user." };
+          await updateUser(targetUser, { name: newName });
 
-      await updateUser(targetUser, { name: newName });
-
-      return { email: email, newName };
+          return { email: email, newName };
+        },
+        defValue: { error: "You don't have permissions to change this name" },
+      });
     },
   },
 };
