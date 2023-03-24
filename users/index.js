@@ -14,7 +14,9 @@ await initDB(false);
 const server = new ApolloServer({
   schema: buildFederatedSchema([{ typeDefs, resolvers }]),
   context: ({ req }) => {
-    if (req.headers.token == "undefined") return { email: null };
+    // a bad hack ¯\_(ツ)_/¯
+    if (!req.headers.token || req.headers.token == "undefined")
+      return { email: null };
     return { userEmail: verifyToken(req.headers.token) };
   },
 });

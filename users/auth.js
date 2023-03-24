@@ -14,7 +14,4 @@ const verifyToken = (token) => {
   return JWT.verify(token, TOKEN_SECRET).email;
 };
 
-const extractEmail = (request) =>
-  verifyToken(request.headers.authorization.substring("Bearer ".length));
-
-export { isValidPassword, encrypt, token, verifyToken, extractEmail };
+export { isValidPassword, encrypt, token, verifyToken };
