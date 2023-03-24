@@ -1,5 +1,5 @@
 # Surah
-This service provide Quran Surah metadata.
+This service provides Quran Surah metadata.
 
 ## Testing
 ``` shell
