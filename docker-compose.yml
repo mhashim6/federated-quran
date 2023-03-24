@@ -10,14 +10,22 @@ services:
       - "5001:5001"
     command: "npm run start"
 
-  juz:
-    build: ./juz
-    container_name: juz
+  db:
+    image: postgres
+    restart: always
     volumes:
-      - "./juz:/src/app"
+      - "./data:/var/lib/postgresql/data"
     ports:
-      - "5002:5002"
-    command: "npm run start"
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: users
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
 
   users:
     build: ./users
