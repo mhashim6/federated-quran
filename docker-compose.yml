@@ -1,13 +1,22 @@
 version: "2"
 
 services:
+  juz:
+    build: ./juz
+    container_name: juz
+    # volumes:
+    #   - "./juz:/src/app"
+    ports:
+      - "5001:5001"
+    command: "npm run start"
+
   surah:
     build: ./surah
     container_name: surah
-    volumes:
-      - "./surah:/src/app"
+    # volumes:
+    #   - "./surah:/src/app"
     ports:
-      - "5001:5001"
+      - "5002:5002"
     command: "npm run start"
 
   db:
