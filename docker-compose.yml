@@ -41,6 +41,8 @@ services:
     container_name: users
     ports:
       - "5003:5003"
+    environment:
+      - DB_CONNECTION=postgres://postgres:password@db:5432/users
     depends_on:
       db:
         condition: service_healthy
